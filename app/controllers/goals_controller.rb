@@ -13,7 +13,7 @@ class GoalsController < ApplicationController
 
   def create
     @goal = Goal.new
-    @goal.user_id = params[:user_id]
+    @goal.user_id = current_user.id
     @goal.goal = params[:goal]
 
     if @goal.save
@@ -30,7 +30,7 @@ class GoalsController < ApplicationController
   def update
     @goal = Goal.find(params[:id])
 
-    @goal.user_id = params[:user_id]
+    @goal.user_id = current_user.id
     @goal.goal = params[:goal]
 
     if @goal.save

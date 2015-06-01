@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @entries = Entry.all
+    @entries = current_user.entries.limit(10)
     @goals = Goal.all
   end
 end

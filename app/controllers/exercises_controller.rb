@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new
     @exercise.exercise_name = params[:exercise_name]
-    @exercise.user_id = params[:user_id]
+    @exercise.user_id = current_user.id
 
     if @exercise.save
       redirect_to "/exercises", :notice => "Exercise created successfully."
@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
 
     @exercise.exercise_name = params[:exercise_name]
-    @exercise.user_id = params[:user_id]
+    @exercise.user_id = current_user.id
 
     if @exercise.save
       redirect_to "/exercises", :notice => "Exercise updated successfully."

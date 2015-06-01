@@ -22,7 +22,7 @@
       <th>Exercise Type</th>
       <th>Duration (minutes)</th>
       <th>Date</th>
-
+<th>Notes</th>
       <th></th>
       <th></th>
     </tr>
@@ -34,14 +34,14 @@
         <td><%= entry.exercise.exercise_name %></td>
         <td><%= entry.minutes %></td>
         <td><%= entry.did_on %></td>
-
+<td><%= entry.notes %></td>
         <td>
           <a href="/entries/<%= entry.id %>/edit" class="btn btn-link">Edit
 
           </a>
         </td>
         <td>
-          <a href="/delete_entry/<%= entry.id %>" class="btn btn-link">Delete
+          <a href="/delete_entry/<%= entry.id %>" class="btn btn-link delete-link">Delete
 
           </a>
         </td>

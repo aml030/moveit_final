@@ -7,11 +7,7 @@
 <h4 class="text-warning"> Putting goals in writing helps you stick to them, and sharing goals with your network is even better! Keep track of your exercise goals here. </h4>
 <!-- Responsive, Isotope-based layout example -->
 
-<div class="row">
-  <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Goals (start typing)" class="form-control">
-  </div>
-</div>
+
 
 <hr>
 
@@ -21,7 +17,7 @@
       <th>Goal</th>
         <th></th>
       <th>Last Updated</th>
-      <th></th>
+
       <th></th>
       <th></th>
     </tr>
@@ -33,16 +29,14 @@
       <td><%= goal.id %></td>
       <td><%= goal.goal %></td>
       <td><%= goal.updated_at %></td>
-      <td><a href="/goals/<%= goal.id %>" class="btn btn-link">View
-      </a>
-    </td>
+
     <td>
       <a href="/goals/<%= goal.id %>/edit" class="btn btn-link">Edit
 
       </a>
     </td>
     <td>
-      <a href="/delete_goal/<%= goal.id %>" class="btn btn-link">Delete
+      <a href="/delete_goal/<%= goal.id %>" class="btn btn-link delete-link">Delete
 
       </a>
     </td>

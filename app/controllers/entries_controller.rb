@@ -14,10 +14,11 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new
-    @entry.user_id = params[:user_id]
+    @entry.user_id = current_user.id
     @entry.minutes = params[:minutes]
     @entry.did_on = params[:did_on]
     @entry.exercise_id = params[:exercise_id]
+    @entry.notes = params[:notes]
 
     if @entry.save
       redirect_to "/entries", :notice => "Entry created successfully."
@@ -33,10 +34,11 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find(params[:id])
 
-    @entry.user_id = params[:user_id]
+    @entry.user_id = current_user.id
     @entry.minutes = params[:minutes]
     @entry.did_on = params[:did_on]
     @entry.exercise_id = params[:exercise_id]
+    @entry.notes = params[:notes]
 
     if @entry.save
       redirect_to "/entries", :notice => "Entry updated successfully."
