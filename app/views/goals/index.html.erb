@@ -1,0 +1,102 @@
+<div class="page-header">
+  <h1>
+    Your Goals
+    <a href="/goals/new" class="btn btn-link btn-success">Add New</a>
+  </h1>
+</div>
+<h4 class="text-warning"> Putting goals in writing helps you stick to them, and sharing goals with your network is even better! Keep track of your exercise goals here. </h4>
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Goals (start typing)" class="form-control">
+  </div>
+</div>
+
+<hr>
+
+<table class="table table-hover table_condensed">
+  <thead>
+    <tr>
+      <th>Goal</th>
+        <th></th>
+      <th>Last Updated</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goals.each do |goal| %>
+    <tr>
+      <td><%= goal.id %></td>
+      <td><%= goal.goal %></td>
+      <td><%= goal.updated_at %></td>
+      <td><a href="/goals/<%= goal.id %>" class="btn btn-link">View
+      </a>
+    </td>
+    <td>
+      <a href="/goals/<%= goal.id %>/edit" class="btn btn-link">Edit
+
+      </a>
+    </td>
+    <td>
+      <a href="/delete_goal/<%= goal.id %>" class="btn btn-link">Delete
+
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+
+<!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->

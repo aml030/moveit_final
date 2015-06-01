@@ -1,0 +1,72 @@
+<!-- Validation failure messages -->
+
+<% if @following.errors.any? %>
+  <% @following.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Following</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_following" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for approved -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="approved">
+                  <input type="checkbox" id="approved" name="approved" value="1" <%= "checked" if @following.approved %>>
+                  Approved
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for follower_id -->
+          <div class="form-group">
+            <label for="follower_id" class="col-sm-2 control-label">
+              Follower
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="follower_id" name="follower_id" placeholder="Follower" class="form-control" value="<%= @following.follower_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for leader_id -->
+          <div class="form-group">
+            <label for="leader_id" class="col-sm-2 control-label">
+              Leader
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="leader_id" name="leader_id" placeholder="Leader" class="form-control" value="<%= @following.leader_id %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Following
+              </button>
+              or
+              <a href="/followings">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

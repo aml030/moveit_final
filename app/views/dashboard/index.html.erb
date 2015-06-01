@@ -1,0 +1,72 @@
+<h1> <%= current_user.first_name %>'s Dashboard </h1>
+
+<img> <%= current_user.photo %> </img>
+
+<h2>  Goals </h2>
+
+<table class="table table-hover table_condensed">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Last Updated</th>
+
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= goal.goal %></td>
+        <td><%= time_ago_in_words(goal.updated_at) %> ago</td>
+
+        <td>
+          <a href="/goals/<%= goal.id %>/edit_form" class="btn btn-link">Edit
+
+          </a>
+        </td>
+        <td>
+          <a href="/delete_goal/<%= goal.id %>" class="btn btn-link">Delete
+
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+To add a new column:
+
+rails generate migration AddNotesToEntries notes:text
+rake db:migrate
+
+
+
+
+
+<h2> MOVE Log </h2>
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Exercise Type</th>
+      <th>Duration (minutes)</th>
+      <th>Date</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.exercise.exercise_name  %></td>
+        <td><%= entry.minutes %></td>
+        <td><%= entry.did_on %></td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

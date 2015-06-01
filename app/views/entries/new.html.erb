@@ -1,0 +1,83 @@
+<!-- Validation failure messages -->
+
+<% if @entry.errors.any? %>
+<% @entry.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Entry</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_entry" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <label for="user_id" class="col-sm-2 control-label">
+              User
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @entry.user_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for exercise_id -->
+          <div class="form-group">
+            <label for="exercise_id" class="col-sm-2 control-label">
+              Exercise Type
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:exercise_id, options_from_collection_for_select(Exercise.order("exercise_name ASC"), :id, :exercise_name)) %>
+            </div>
+            <span id="helpBlock" class="help-block">Don't see the exercise type you want? Just add a new one by clicking the "Exercises" link in the navigation bar above.</span>
+          </div>
+
+          <!-- Label and input for minutes -->
+          <div class="form-group">
+            <label for="minutes" class="col-sm-2 control-label">
+              Duration
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="minutes" name="minutes" placeholder="Minutes" class="form-control" value="<%= @entry.minutes %>">
+            </div>
+          </div>
+
+          <!-- Label and input for did_on -->
+          <div class="form-group">
+            <label for="did_on" class="col-sm-2 control-label">
+              Date
+            </label>
+            <div class="col-sm-10">
+            <input type="text" id="did_on" name="did_on" placeholder="MM/DD/YYYY" class="form-control" value="<%= @entry.did_on %>">
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Entry
+              </button>
+              or
+              <a href="/entries">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
