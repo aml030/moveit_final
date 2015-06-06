@@ -28,7 +28,7 @@
     <tr>
       <td><%= goal.id %></td>
       <td><%= goal.goal %></td>
-      <td><%= goal.updated_at %></td>
+      <td><%= time_ago_in_words(goal.updated_at)%> ago</td>
 
     <td>
       <a href="/goals/<%= goal.id %>/edit" class="btn btn-link">Edit

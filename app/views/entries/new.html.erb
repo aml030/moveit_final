@@ -43,39 +43,54 @@
             </div>
           </div>
 
-          <!-- Label and input for did_on -->
+          <!-- Label and input for did_on-->
           <div class="form-group">
             <label for="did_on" class="col-sm-2 control-label">
               Date
             </label>
-            <div class="col-sm-10">
+            <!-- <div class="col-sm-10">
             <input type="text" id="did_on" name="did_on" placeholder="DD/MM/YYYY" class="form-control" value="<%= @entry.did_on %>">
+          </div>-->
+          <div class="col-sm-10">
+            <div  class='input-group date' id='datetimepicker1'>
+              <input type='text' class="form-control"  name="did_on" id="did_on">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
             </div>
           </div>
+        </div>
 
- <div class="form-group">
-            <label for="notes" class="col-sm-2 control-label">
-              Notes
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="notes" name="notes" placeholder="Type notes here" class="form-control" value="<%= @entry.notes %>">
-            </div>
+
+
+        <div class="form-group">
+          <label for="notes" class="col-sm-2 control-label">
+            Notes
+          </label>
+          <div class="col-sm-10">
+            <input type="text" id="notes" name="notes" placeholder="Type notes here" class="form-control" value="<%= @entry.notes %>">
           </div>
+        </div>
 
 
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-success">
-                Create Entry
-              </button>
-              or
-              <a href="/entries">Cancel</a>
-            </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-success">
+              Create Entry
+            </button>
+            or
+            <a href="/entries">Cancel</a>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+</div>
 
 <!-- End responsive panel example -->
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>
