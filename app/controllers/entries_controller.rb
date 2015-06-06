@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   def index
-    @entries = Entry.all
+    @entries = current_user.entries.order("did_on DESC")
 
   end
 
@@ -16,7 +16,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new
     @entry.user_id = current_user.id
     @entry.minutes = params[:minutes]
-    @entry.did_on = params[:did_on]
+    @entry.did_on = Chronic.parse(params[:did_on])
     @entry.exercise_id = params[:exercise_id]
     @entry.notes = params[:notes]
 
@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
 
     @entry.user_id = current_user.id
     @entry.minutes = params[:minutes]
-    @entry.did_on = params[:did_on]
+    @entry.did_on = Chronic.parse(params[:did_on])
     @entry.exercise_id = params[:exercise_id]
     @entry.notes = params[:notes]
 

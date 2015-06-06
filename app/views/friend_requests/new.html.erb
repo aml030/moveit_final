@@ -15,30 +15,30 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Add Friend Request</h3>
+        <h3 class="panel-title">Add Friend</h3>
       </div>
       <div class="panel-body">
         <form action="/create_friend_request" method="post" class="form-horizontal">
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-          <!-- Label and input for sender_id -->
+          <!-- Label and input for sender_id
           <div class="form-group">
             <label for="sender_id" class="col-sm-2 control-label">
               Sender
             </label>
             <div class="col-sm-10">
-              <input type="text" id="sender_id" name="sender_id" placeholder="Sender" class="form-control" value="<%= @friend_request.sender_id %>">
+              <input type="text" id="<%= @friend_request.sender_id %>" name="sender_id" placeholder="Sender" class="form-control" value="<%= @friend_request.sender_id %>">
             </div>
-          </div>
+          </div> -->
 
           <!-- Label and input for receiver_id -->
           <div class="form-group">
             <label for="receiver_id" class="col-sm-2 control-label">
-              Receiver
+              Email of New Friend
             </label>
             <div class="col-sm-10">
-              <input type="text" id="receiver_id" name="receiver_id" placeholder="Receiver" class="form-control" value="<%= @friend_request.receiver_id %>">
+              <input type="text" id="receiver_id" name="receiver_id" placeholder="Email" class="form-control" value="<%= @friend_request.receiver_id %>">
             </div>
           </div>
 

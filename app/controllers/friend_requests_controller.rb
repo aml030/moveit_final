@@ -13,7 +13,7 @@ class FriendRequestsController < ApplicationController
 
   def create
     @friend_request = FriendRequest.new
-    @friend_request.sender_id = params[:sender_id]
+    @friend_request.sender_id = current_user.id
     @friend_request.receiver_id = params[:receiver_id]
 
     if @friend_request.save
@@ -30,7 +30,7 @@ class FriendRequestsController < ApplicationController
   def update
     @friend_request = FriendRequest.find(params[:id])
 
-    @friend_request.sender_id = params[:sender_id]
+    @friend_request.sender_id = current_user.id
     @friend_request.receiver_id = params[:receiver_id]
 
     if @friend_request.save
