@@ -20,6 +20,7 @@ has_many :friend_requests_where_receiver, :class_name => "FriendRequest", :forei
 
 has_many :friends_where_receiver, :through => :friend_requests_where_receiver, :source => :sender
 
+#has_many :entries, :through => :friends_where_sender, :source => :entries
 
 
 

@@ -27,7 +27,7 @@
       <tr>
         <td><%= entry.exercise.exercise_name %></td>
         <td><%= entry.minutes %></td>
-        <td><%= entry.did_on %></td>
+        <td><%= entry.did_on.try(:strftime, '%A, %b %e, %Y') %></td>
 <td><%= entry.notes %></td>
         <td>
           <a href="/entries/<%= entry.id %>/edit" class="btn btn-link">Edit
